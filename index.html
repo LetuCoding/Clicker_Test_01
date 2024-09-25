@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Clicker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game">
+    <h1>Clicker RPG</h1>
+    <div id="enemy">
+      <h2 id="enemy-name">Goblin Nivel:</h2>
+      <img src="goblin.png" alt="Enemigo" id="enemy-image">
+      <p>Salud: <span id="enemy-health">100</span></p>
+    </div>
+    
+   
+    <p>Oro: <span id="gold">0</span></p>
+    
+    <h3>Tienda</h3>
+    <div id="shop">
+      <button id="upgrade-dps">Mejorar DPS (Coste: <span id="upgrade-cost">10</span>)</button>
+      <p>DPS Actual: <span id="dps">1</span></p>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
