@@ -5,11 +5,14 @@ let enemyHealth = 10;
 let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
 let upgradeCost = 10;
 var enemyName = document.getElementById("enemy-name");
+var enemyImage = document.getElementById("enemy-image");
 const enemyHealthElement = document.getElementById('enemy-health');
 const goldElement = document.getElementById('gold');
 const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
+let randomNum = 1;
+
 
 // Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente, funciona, pero le pasa algo raro de vez en cuando de esa forma
 function attackEnemy() {
@@ -17,6 +20,9 @@ function attackEnemy() {
     if (enemyHealth <= 0) {
         let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel, aumenta según el nivel que estás
         gold += goldEarned;
+        generateRandomNum();
+        enemyImage.src= "img/enemies/"+randomNum+".png";
+        console.log("enemigo :"+randomNum);
         nivel++; // Subimos de nivel
         enemyMaxHealth = Math.round(10 * Math.pow(1.2, nivel)); // Salud del enemigo escala exponencialmente, aumenta ma o meno de un 20% por lvl
         enemyHealth = enemyMaxHealth; // Restablecemos la salud
@@ -25,12 +31,15 @@ function attackEnemy() {
     updateEnemy();
 }
 
+
 // Actualizar la salud del enemigo
 function updateEnemy() {
     enemyHealthElement.textContent = Math.round(enemyHealth); // Redondeamos la salud
     enemyName.innerHTML="Nivel enemigo:"+nivel;
     console.log("Nivel:"+nivel+ " DPS:"+dps+" enemy max health:" +enemyMaxHealth);
 }
+
+
 
 // Actualizar el estado del juego
 function updateGame() {
@@ -39,6 +48,8 @@ function updateGame() {
     dpsElement.textContent = dps;
     upgradeCostElement.textContent = upgradeCost;
 }
+
+
 
 // Mejorar el DPS
 function upgradeDps() {
@@ -49,6 +60,8 @@ function upgradeDps() {
         updateGame();
     }
 }
+
+
 
 // Función de daño automático por segundo, esto va bien, no he encontrado errores de momento :o
 function automaticDamage() {
@@ -65,6 +78,14 @@ function automaticDamage() {
         updateEnemy();
     }
 }
+
+//metodo para generar número random y elegir el siguiente enemigo
+function generateRandomNum()
+{
+    randomNum = Math.floor(Math.random()* (4-1+1)) + 1;
+    return randomNum;
+}
+
 
 // Event Listeners
 document.addEventListener('click', attackEnemy); // Detecta clic en cualquier lugar del documento
