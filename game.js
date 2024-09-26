@@ -10,6 +10,8 @@ const goldElement = document.getElementById('gold');
 const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
+const automaticDps = document.getElementById('automatic-dps');
+const automaticCost = 700
 
 // Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente, funciona, pero le pasa algo raro de vez en cuando de esa forma
 function attackEnemy() {
@@ -36,8 +38,13 @@ function updateEnemy() {
 function updateGame() {
     goldElement.textContent = gold;
     upgradeDpsButton.disabled = gold < upgradeCost;
+    automaticDps.disabled = gold < automaticCost;
     dpsElement.textContent = dps;
     upgradeCostElement.textContent = upgradeCost;
+
+    if(automaticDps.classList.contains('comprado')){
+        automaticDps.disabled = true;
+    }
 }
 
 // Mejorar el DPS
@@ -68,11 +75,18 @@ function automaticDamage() {
 
 // Event Listeners
 document.addEventListener('click', attackEnemy); // Detecta clic en cualquier lugar del documento
-upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar 
+upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar
+automaticDps.addEventListener('click', (ev) => {
+    setInterval(automaticDamage, 1000);
+    gold -= automaticCost;
+    updateGame();
+    automaticDps.classList.add('comprado');
+    automaticDps.innerText = 'COMPRADO'
+}); // Daño automatico si lo compra
 
 // Iniciar el juego
 function gameLoop() {
-    setInterval(automaticDamage, 1000); // Daño automático cada segundo, se puede hacer una habilidad para reducir el tiempo que tarda en hacer el daño automatico
+     // Daño automático cada segundo, se puede hacer una habilidad para reducir el tiempo que tarda en hacer el daño automatico
     updateEnemy();
     updateGame();
 }
