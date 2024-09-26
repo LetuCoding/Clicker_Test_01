@@ -1,5 +1,24 @@
+
+
+ 
+let dps = 1; // Valor por defecto en caso de que no haya nada en localStorage
+
+
+/* Función para el localstorage, guardar información en local
+window.onload = function() {
+    if(localStorage.getItem("dps")) {
+        dps = parseInt(localStorage.getItem("dps"));
+        console.log("DPS cargado correctamente: " + dps);
+    } else {
+        console.log("No se encontró DPS guardado, valor por defecto: " + dps);
+    }
+
+    
+}
+
+*/
+
 let gold = 0;
-let dps = 1; 
 let nivel = 1;
 let enemyHealth = 10;
 let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
@@ -12,6 +31,10 @@ const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
 let randomNum = 1;
+
+
+
+
 
 
 // Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente, funciona, pero le pasa algo raro de vez en cuando de esa forma
@@ -58,6 +81,14 @@ function upgradeDps() {
         dps += Math.round(Math.pow(1.1,dps)); // Mejora el DPS, que también aumenta exponencialmente
         upgradeCost = Math.round(10 * Math.pow(1.25, nivel)); // Coste de mejora, escala exponencialmente
         updateGame();
+        
+        /* actualizar local storage
+        localStorage.setItem("dps",dps);
+        if(localStorage.getItem("dps"))
+        {
+            console.log("dps guardado");
+        }
+        */
     }
 }
 
@@ -96,7 +127,12 @@ function gameLoop() {
     setInterval(automaticDamage, 1000); // Daño automático cada segundo, se puede hacer una habilidad para reducir el tiempo que tarda en hacer el daño automatico
     updateEnemy();
     updateGame();
+
+
+
 }
+
+
 
 // Comienza el ciclo del juego, loop infinito cerdas.
 gameLoop();
