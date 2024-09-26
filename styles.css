@@ -1,8 +1,16 @@
+*
+{
+  user-select: none;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
 
   }
+
+
   
   #game {
     width: 300px;
