@@ -1,34 +1,58 @@
 
-
- 
 let dps = 1; // Valor por defecto en caso de que no haya nada en localStorage
+let gold = 0;
+let nivel = 1;
+let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
+let enemyHealth = enemyMaxHealth;
+let upgradeCost = 10;
 
-
-/* Función para el localstorage, guardar información en local
+//Función para el localstorage, guardar información en local
 window.onload = function() {
-    if(localStorage.getItem("dps")) {
+       
+
+   console.log(localStorage.getItem("max-health")+" Hola mundo");
+    if(localStorage.getItem("dps")!=null) {
         dps = parseInt(localStorage.getItem("dps"));
         console.log("DPS cargado correctamente: " + dps);
     } else {
         console.log("No se encontró DPS guardado, valor por defecto: " + dps);
     }
-
-    
+    if(localStorage.getItem("gold") !=null)
+    {
+        gold = parseInt(localStorage.getItem("gold"));
+        console.log("Oro cargado correctamente: " + gold);
+    }
+    if(localStorage.getItem("nivel"))
+        {
+            nivel= parseInt(localStorage.getItem("nivel"));
+            console.log("Nivel cargado correctamente: " + nivel);
+        }
+    if(localStorage.getItem("upgradeCost"))
+        {
+            upgradeCost = parseInt(localStorage.getItem("upgradeCost"));
+            console.log("Coste cargado correctamente: " + upgradeCost);
+        }
+    if(localStorage.getItem("max-health"))
+        {
+               enemyMaxHealth= parseInt(localStorage.getItem("max-health"));
+               enemyHealth = enemyMaxHealth;
+               console.log("Vida cargado máxima correctamente: " + enemyMaxHealth+ " vida actual: "+enemyHealth);
+              
+        }
+        updateGame();
 }
 
-*/
 
-let gold = 0;
-let nivel = 1;
-let enemyHealth = 10;
-let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
-let upgradeCost = 10;
+
+
+
 var enemyName = document.getElementById("enemy-name");
 var enemyImage = document.getElementById("enemy-image");
 const enemyHealthElement = document.getElementById('enemy-health');
 const goldElement = document.getElementById('gold');
 const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
+const resetButton = document.getElementById('reset-button');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
 let randomNum = 1;
 
@@ -43,11 +67,15 @@ function attackEnemy() {
     if (enemyHealth <= 0) {
         let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel, aumenta según el nivel que estás
         gold += goldEarned;
+        localStorage.setItem("gold", gold);
         generateRandomNum();
         enemyImage.src= "img/enemies/"+randomNum+".png";
         console.log("enemigo :"+randomNum);
         nivel++; // Subimos de nivel
+        localStorage.setItem("nivel", nivel);
         enemyMaxHealth = Math.round(10 * Math.pow(1.2, nivel)); // Salud del enemigo escala exponencialmente, aumenta ma o meno de un 20% por lvl
+        localStorage.setItem("max-health",enemyMaxHealth);
+        
         enemyHealth = enemyMaxHealth; // Restablecemos la salud
         updateGame();
     }
@@ -82,13 +110,10 @@ function upgradeDps() {
         upgradeCost = Math.round(10 * Math.pow(1.25, nivel)); // Coste de mejora, escala exponencialmente
         updateGame();
         
-        /* actualizar local storage
+        // actualizar local storage
         localStorage.setItem("dps",dps);
-        if(localStorage.getItem("dps"))
-        {
-            console.log("dps guardado");
-        }
-        */
+        localStorage.setItem("upgradeCost", upgradeCost);
+
     }
 }
 
@@ -118,7 +143,26 @@ function generateRandomNum()
 }
 
 
+function resetStats() {
+     
+ dps = 1; 
+ gold = 0;
+ nivel = 1;
+ enemyHealth = 10;
+ enemyMaxHealth = 10; 
+ upgradeCost = 10;
+ localStorage.setItem("nivel", nivel);
+ localStorage.setItem("dps",dps);
+ localStorage.setItem("upgradeCost", upgradeCost);
+ localStorage.setItem("max-health",enemyMaxHealth);
+ localStorage.setItem("gold", gold);
+
+ updateGame();
+
+}
+
 // Event Listeners
+resetButton.addEventListener('click', resetStats);
 document.addEventListener('click', attackEnemy); // Detecta clic en cualquier lugar del documento
 upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar 
 
