@@ -173,11 +173,11 @@ resetButton.addEventListener('click', resetStats);
 document.addEventListener('click', attackEnemy); // Detecta clic en cualquier lugar del documento
 upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar
 automaticDps.addEventListener('click', (ev) => {
+    automaticDps.classList.add('comprado');
+    automaticDps.innerText = 'COMPRADO'
     setInterval(automaticDamage, 1000);
     gold -= automaticCost;
     updateGame();
-    automaticDps.classList.add('comprado');
-    automaticDps.innerText = 'COMPRADO'
 }); // Daño automatico si lo compra
 
 // Iniciar el juego
