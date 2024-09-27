@@ -61,7 +61,7 @@ let randomNum = 1;
 
 
 
-// Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente, funciona, pero le pasa algo raro de vez en cuando de esa forma
+// Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente,  funciona, pero le pasa algo raro de vez en cuando de esa forma
 function attackEnemy() {
     enemyHealth -= dps;
     if (enemyHealth <= 0) {
