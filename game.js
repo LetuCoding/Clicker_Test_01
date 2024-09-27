@@ -9,6 +9,7 @@ let upgradeCost = 10;
 //Función para el localstorage, guardar información en local
 window.onload = function() {
        
+       
 
    console.log(localStorage.getItem("max-health")+" Hola mundo");
     if(localStorage.getItem("dps")!=null) {
