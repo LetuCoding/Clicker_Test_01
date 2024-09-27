@@ -67,8 +67,13 @@ function updateEnemy() {
 function updateGame() {
     goldElement.textContent = gold;
     upgradeDpsButton.disabled = gold < upgradeCost;
+    automaticDps.disabled = gold < automaticCost;
     dpsElement.textContent = dps;
     upgradeCostElement.textContent = upgradeCost;
+
+    if(automaticDps.classList.contains('comprado')){
+        automaticDps.disabled = true;
+    }
 }
 
 
