@@ -37,9 +37,29 @@ body {
   button:disabled {
     background-color: #ccc;
   }
+
+  #containerShop {
+    display: flex;
+    justify-content: center;
+  }
   
   #shop {
-    margin-top: 20px;
+    flex: 1;
+  }
+
+  #shop p {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #automatic {
+    flex: 1;
+  }
+
+  #automatic-dps{
+    padding: 3px 20px;
+    margin: 10px;
+    cursor: pointer;
   }
   
   #enemy-image
@@ -47,5 +67,3 @@ body {
     height: 100%;
     width: 100%;
   }
-
- 

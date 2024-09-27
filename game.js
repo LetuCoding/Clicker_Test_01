@@ -1,4 +1,3 @@
-
 let dps = 1; // Valor por defecto en caso de que no haya nada en localStorage
 let gold = 0;
 let nivel = 1;
@@ -55,6 +54,8 @@ const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const resetButton = document.getElementById('reset-button');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
+const automaticDps = document.getElementById('automatic-dps');
+const automaticCost = 700
 let randomNum = 1;
 
 
@@ -97,8 +98,13 @@ function updateEnemy() {
 function updateGame() {
     goldElement.textContent = gold;
     upgradeDpsButton.disabled = gold < upgradeCost;
+    automaticDps.disabled = gold < automaticCost;
     dpsElement.textContent = dps;
     upgradeCostElement.textContent = upgradeCost;
+
+    if(automaticDps.classList.contains('comprado')){
+        automaticDps.disabled = true;
+    }
 }
 
 
@@ -165,19 +171,21 @@ function resetStats() {
 // Event Listeners
 resetButton.addEventListener('click', resetStats);
 document.addEventListener('click', attackEnemy); // Detecta clic en cualquier lugar del documento
-upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar 
+upgradeDpsButton.addEventListener('click', upgradeDps); //pa mejorar
+automaticDps.addEventListener('click', (ev) => {
+    setInterval(automaticDamage, 1000);
+    gold -= automaticCost;
+    updateGame();
+    automaticDps.classList.add('comprado');
+    automaticDps.innerText = 'COMPRADO'
+}); // Daño automatico si lo compra
 
 // Iniciar el juego
 function gameLoop() {
-    setInterval(automaticDamage, 1000); // Daño automático cada segundo, se puede hacer una habilidad para reducir el tiempo que tarda en hacer el daño automatico
+     // Daño automático cada segundo, se puede hacer una habilidad para reducir el tiempo que tarda en hacer el daño automatico
     updateEnemy();
     updateGame();
-
-
-
 }
-
-
 
 // Comienza el ciclo del juego, loop infinito cerdas.
 gameLoop();
