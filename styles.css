@@ -15,9 +15,10 @@ body {
 
   
   #game {
+    color: white;
     width: 300px;
     margin: 100px auto;
-    background-color: rgb(53, 53, 92);
+    background-color: rgb(0, 0, 0);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -35,7 +36,8 @@ body {
   }
   
   button:disabled {
-    background-color: #ccc;
+    background-color: gray;
+    cursor:auto;
   }
 
   #containerShop {
@@ -67,3 +69,23 @@ body {
     height: 100%;
     width: 100%;
   }
+
+
+  button:enabled
+  {
+    background: none;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  button:hover:enabled
+  {
+    cursor: pointer;
+    border-color: yellow;
+    color: yellow;
+  }
+
+
+  
+
+  

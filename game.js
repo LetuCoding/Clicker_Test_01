@@ -4,7 +4,7 @@ let nivel = 1;
 let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
 let enemyHealth = enemyMaxHealth;
 let upgradeCost = 10;
-
+const automaticCost = 50;
 //Función para el localstorage, guardar información en local
 window.onload = function() {
        
@@ -39,6 +39,7 @@ window.onload = function() {
                console.log("Vida cargado máxima correctamente: " + enemyMaxHealth+ " vida actual: "+enemyHealth);
               
         }
+        updateEnemy();
         updateGame();
 }
 
@@ -55,7 +56,6 @@ const upgradeCostElement = document.getElementById('upgrade-cost');
 const resetButton = document.getElementById('reset-button');
 const upgradeDpsButton = document.getElementById('upgrade-dps');
 const automaticDps = document.getElementById('automatic-dps');
-const automaticCost = 700
 let randomNum = 1;
 
 
