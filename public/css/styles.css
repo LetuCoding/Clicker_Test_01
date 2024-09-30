@@ -84,7 +84,13 @@ body {
     border-color: yellow;
     color: yellow;
   }
-
+  button:hover:enabled:active
+  {
+    cursor: pointer;
+    border-color: yellow;
+    color: yellow;
+    transform: translateY(2px);
+  }
 
   
 
