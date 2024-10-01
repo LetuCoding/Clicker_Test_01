@@ -5,9 +5,17 @@ let enemyMaxHealth = 10; // Salud máxima del enemigo inicial
 let enemyHealth = enemyMaxHealth;
 let upgradeCost = 10;
 const automaticCost = 50;
+var user="";
+var pass ="";
+var menuInicio = document.getElementById("menuIniciosesion");
+var panelPrincipal = document.getElementById("game");
+
+
+
 //Función para el localstorage, guardar información en local
 window.onload = function() {
        
+
        
 
    console.log(localStorage.getItem("max-health")+" Hola mundo");
@@ -39,6 +47,9 @@ window.onload = function() {
                console.log("Vida cargado máxima correctamente: " + enemyMaxHealth+ " vida actual: "+enemyHealth);
               
         }
+    
+        
+
         updateEnemy();
         updateGame();
 }
@@ -59,8 +70,45 @@ const automaticDps = document.getElementById('automatic-dps');
 let randomNum = 1;
 
 
+//Lógica inicio/registro de la sesión
 
 
+
+
+    document.getElementById("inicioSesion").addEventListener('submit',function(event)
+    {   
+    event.preventDefault();
+    alert("hola mundo");
+    if(localStorage.getItem("userID") &&  localStorage.getItem("passID") )
+    {
+        if(user ==  localStorage.getItem("userID") && pass == localStorage.getItem("passID"))
+            {
+                menuInicio.style.visibility = "hidden";
+                panelPrincipal.style.visibility = "visible";
+            }
+            
+            else
+            {
+                alert("Cuenta o contraseña erronea");
+            }    
+    }
+    
+    
+})
+
+
+
+
+ 
+
+    
+
+
+    localStorage.setItem('userID'  , user);
+    localStorage.setItem('passID' , pass);
+
+
+   
 
 
 // Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente,  funciona, pero le pasa algo raro de vez en cuando de esa forma
