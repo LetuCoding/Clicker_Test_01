@@ -11,9 +11,6 @@ body {
   }
 
 
-
-
-  
   #game {
     color: white;
     width: 300px;
@@ -84,7 +81,13 @@ body {
     border-color: yellow;
     color: yellow;
   }
-
+  button:hover:enabled:active
+  {
+    cursor: pointer;
+    border-color: yellow;
+    color: yellow;
+    transform: translateY(2px);
+  }
 
   
 
