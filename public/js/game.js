@@ -245,7 +245,7 @@ function resetStats() {
 // --------------------------- EVENT LISTENERS ---------------------------
 
 
-// Botón de reinicio de estadísticas  
+// Botón de reinicio de estadísticas
 resetButton.addEventListener('click', resetStats);
 
 
