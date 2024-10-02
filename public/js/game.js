@@ -34,7 +34,7 @@ window.onload = function() {
         }
     if(localStorage.getItem("max-health"))
         {
-               enemyMaxHealth= parseInt(localStorage.getItem("max-health"));
+               enemyMaxHealth = parseInt(localStorage.getItem("max-health"));
                enemyHealth = enemyMaxHealth;
                console.log("Vida cargado máxima correctamente: " + enemyMaxHealth+ " vida actual: "+enemyHealth);
               
@@ -43,7 +43,7 @@ window.onload = function() {
             automaticDps.classList.add('comprado');
             automaticDps.innerText = 'COMPRADO';
             automaticDps.disabled = true;
-            setInterval(automaticDamage, 1000); // Reactivar el daño automático
+            intervalo = setInterval(automaticDamage, 1000); // Reactivar el daño automático
         }
         updateEnemy();
         updateGame();
@@ -71,6 +71,7 @@ let randomNum = 1;
 // Función para atacar al enemigo, se puede cambiar por un event listener aquí directamente,  funciona, pero le pasa algo raro de vez en cuando de esa forma
 function attackEnemy() {
     enemyHealth -= dps;
+    localStorage.setItem("max-health",enemyHealth);
     if (enemyHealth <= 0) {
         let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel, aumenta según el nivel que estás
         gold += goldEarned;
@@ -81,8 +82,6 @@ function attackEnemy() {
         nivel++; // Subimos de nivel
         localStorage.setItem("nivel", nivel);
         enemyMaxHealth = Math.round(10 * Math.pow(1.2, nivel)); // Salud del enemigo escala exponencialmente, aumenta ma o meno de un 20% por lvl
-        localStorage.setItem("max-health",enemyMaxHealth);
-        
         enemyHealth = enemyMaxHealth; // Restablecemos la salud
         updateGame();
     }
@@ -109,6 +108,7 @@ function updateGame() {
     if(automaticDps.classList.contains('comprado')){
         automaticDps.disabled = true;
     }
+
 }
 
 
@@ -134,6 +134,7 @@ function upgradeDps() {
 function automaticDamage() {
     if (enemyHealth > 0) {
         enemyHealth -= dps;
+        localStorage.setItem("max-health",enemyHealth);
         if (enemyHealth <= 0) {
             let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel
             gold += goldEarned;
@@ -167,9 +168,12 @@ function resetStats() {
  localStorage.setItem("upgradeCost", upgradeCost);
  localStorage.setItem("max-health",enemyMaxHealth);
  localStorage.setItem("gold", gold);
-
+ localStorage.setItem('automatic-dps', 0);
+ clearInterval(intervalo);
+ automaticDps.classList.remove('comprado');
+ automaticDps.innerText ='DPS Automático (Coste: 50)';
  updateGame();
-
+ updateEnemy();
 }
 
 // Event Listeners
@@ -181,7 +185,7 @@ automaticDps.addEventListener('click', (ev) => {
         automaticDps.classList.add('comprado');
         automaticDps.innerText = 'COMPRADO';
         automaticDps.disabled = true;
-        setInterval(automaticDamage, 1000); // Inicia el daño automático
+        intervalo = setInterval(automaticDamage, 1000); // Inicia el daño automático
         gold -= automaticCost;
         updateGame();
         localStorage.setItem('automatic-dps', 1); // Guarda el estado de compra
