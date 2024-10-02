@@ -1,0 +1,129 @@
+*
+{
+  user-select: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    height: 100vh; /* La altura de la ventana */
+    margin: 0; /* Elimina el margen predeterminado */
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; 
+  }
+
+  #menuIniciosesion {
+    color: white;
+    width: 500px; /* Corrige el ancho */
+    height: 500px;
+    background-color: rgb(0, 0, 0);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    
+  }
+  
+
+  form {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna */
+    gap: 25px;
+
+  }
+  
+  a
+  {
+    color: white;
+  }
+  
+  #game {
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    visibility: hidden;
+    position: absolute;
+    
+  }
+  
+  #enemy {
+    margin-bottom: 20px;
+ 
+  }
+  
+  #attack-button, #upgrade-dps {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: gray;
+    cursor:auto;
+  }
+
+  #containerShop {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #shop {
+    flex: 1;
+  }
+
+  #shop p {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #automatic {
+    flex: 1;
+  }
+
+  #automatic-dps{
+    padding: 3px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  #enemy-image
+  {
+    height: 20%;
+    width: 20%;
+  }
+
+
+  button:enabled
+  {
+    background: none;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  button:hover:enabled
+  {
+    cursor: pointer;
+    border-color: yellow;
+    color: yellow;
+  }
+  button:hover:enabled:active
+  {
+    cursor: pointer;
+    border-color: yellow;
+    color: yellow;
+    transform: translateY(2px);
+  }
+
+  
+
+  
