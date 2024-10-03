@@ -12,7 +12,7 @@ var user = "";
 var pass = "";
 var menuInicio = document.getElementById("menuIniciosesion");
 var panelPrincipal = document.getElementById("game");
-
+var ejecutando = false;
 // Elementos del DOM
 var enemyName = document.getElementById("enemy-name");
 var enemyImage = document.getElementById("enemy-image");
@@ -84,6 +84,7 @@ document.getElementById("menuIniciosesion").addEventListener('submit', function(
     if (storedUser && storedPass) {
         if (user === storedUser && pass === storedPass) {
             // Inicio de sesión exitoso
+            ejecutando = true;
             menuInicio.style.visibility = "hidden";
             panelPrincipal.style.visibility = "visible";
             ejecutando = true;
@@ -112,6 +113,7 @@ document.getElementById("crearCuenta").addEventListener('click', function() {
             // Guardamos el usuario y la contraseña en localStorage
             localStorage.setItem("userID", user);
             localStorage.setItem("passID", pass);
+            ejecutando = true;
             alert("Cuenta creada exitosamente");
 
             // Opcional: Puedes redirigir a la pantalla de juego después del registro exitoso
@@ -190,7 +192,7 @@ function upgradeDps() {
     if (gold >= upgradeCost) {
         gold -= upgradeCost;
         dps += Math.round(Math.pow(1.1, dps)); // Mejora el DPS
-        upgradeCost = Math.round(10 * Math.pow(1.25, nivel)); // Aumenta el costo de mejora
+        upgradeCost = Math.round(10 * Math.pow(1.125, nivel)); // Aumenta el costo de mejora
         updateGame();
 
         // Actualizar localStorage
@@ -239,6 +241,7 @@ function resetStats() {
     localStorage.setItem("upgradeCost", upgradeCost);
     localStorage.setItem("max-health", enemyMaxHealth);
     localStorage.setItem("gold", gold);
+    automaticDps = dps;
     updateGame();
 }
 
@@ -264,7 +267,7 @@ upgradeDpsButton.addEventListener('click', upgradeDps);
 automaticDps.addEventListener('click', (ev) => {
     automaticDps.classList.add('comprado');
     automaticDps.innerText = 'COMPRADO';
-    setInterval(automaticDamage, 1000);
+    setInterval(automaticDamage, 50);
     gold -= automaticCost;
     updateGame();
 });
