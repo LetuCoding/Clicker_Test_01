@@ -21,6 +21,7 @@ const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const resetButton = document.getElementById('reset-button');
 const upgradeDpsButton = document.getElementById('upgrade-dps'); 
+const automaticDps = document.getElementById('automatic-dps');
 let randomNum = 1;
 
 // --------------------------- FUNCIÓN DE INICIO Y CARGA DE LOCALSTORAGE ---------------------------
