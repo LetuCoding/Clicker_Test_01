@@ -7,19 +7,50 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- ZONA DE INICIO DE SESIÓN-->
+<div>
+  <form action="" id="menuIniciosesion">
+    USUARIO:
+    <input name="textUser" id="userID" type="text"  placeholder="Ingrese su nombre de usuario"></textarea>
+    CONTRASEÑA:
+    <input name="textPass" id="passID" type="password" placeholder="Contraseña">
+
+    <button type="submit" name="inicioSesión" id="inicioSesion">Iniciar Sesión</button>
+
+    <button type="button" name="registro" id="crearCuenta">Crear cuenta</button>
+
+
+
+  <div id="zonaBaja">
+    <a href="#">¿Has olvidado tu contraseña?</a>  
+  </div>
+</form>
+
+
+</div>
+
+
+
+<!-- Pantalla de juego-->
+
   <div id="game">
+
     <h1>Clicker RPG</h1>
+
     <div id="enemy">
       <h2 id="enemy-name">Goblin Nivel:</h2>
       <img src="img/enemies/1.png" alt="Enemigo" id="enemy-image" draggable="false">
       <p>Salud: <span id="enemy-health">100</span></p>
     </div>
-    <!-- PEne-->
-   
+  
     <p>Oro: <span id="gold">0</span></p>
     
     <h3>Tienda</h3>
+
+
     <div id="containerShop">
+
       <div id="shop">
         <button id="upgrade-dps">Mejorar DPS (Coste: <span id="upgrade-cost">10</span>)</button>
       <button id="reset-button">Reset</button>
@@ -27,9 +58,12 @@
       <div id="automatic">
         <button id="automatic-dps">DPS Automático (Coste: <span id="automatic-cost">50</span>)</button>
       </div>
+
     </div>
+
     <p>DPS Actual: <span id="dps">1</span></p>
   </div>
+
 
 
   <script src="js/game.js"></script>
