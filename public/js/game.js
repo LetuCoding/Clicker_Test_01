@@ -11,7 +11,7 @@ var user = "";
 var pass = "";
 var menuInicio = document.getElementById("menuIniciosesion");
 var panelPrincipal = document.getElementById("game");
-
+var ejecutando = false;
 // Elementos del DOM
 var enemyName = document.getElementById("enemy-name");
 var enemyImage = document.getElementById("enemy-image");
@@ -85,6 +85,7 @@ document.getElementById("menuIniciosesion").addEventListener('submit', function(
             // Inicio de sesión exitoso
             menuInicio.style.visibility = "hidden";
             panelPrincipal.style.visibility = "visible";
+            ejecutando = true;
         } else {
             // Error de autenticación
             showError("Usuario o contraseña incorrectos");
@@ -115,6 +116,7 @@ document.getElementById("crearCuenta").addEventListener('click', function() {
             // Opcional: Puedes redirigir a la pantalla de juego después del registro exitoso
             document.getElementById("menuIniciosesion").style.visibility = "hidden";
             document.getElementById("game").style.visibility = "visible";
+            ejecutando = true;
         }
     } else {
         // Si uno de los campos está vacío, mostramos un error
@@ -279,8 +281,11 @@ automaticDps.addEventListener('click', (ev) => {
 // --------------------------- BUCLE DEL JUEGO ---------------------------
 // Iniciar el ciclo del juego
 function gameLoop() {
-    updateEnemy();
-    updateGame();
+    if (ejecutando)
+    {
+        updateEnemy();
+        updateGame();
+    }
 }
 
 
