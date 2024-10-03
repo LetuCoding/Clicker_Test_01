@@ -1,6 +1,6 @@
 // --------------------------- VARIABLES GLOBALES ---------------------------
 // Variables principales del juego
-let ejecutando = false
+
 let dps = 1; // Valor por defecto en caso de que no haya nada en localStorage
 let gold = 0;
 let nivel = 1;
