@@ -21,7 +21,7 @@ const goldElement = document.getElementById('gold');
 const dpsElement = document.getElementById('dps');
 const upgradeCostElement = document.getElementById('upgrade-cost');
 const resetButton = document.getElementById('reset-button');
-const upgradeDpsButton = document.getElementById('upgrade-dps');
+const upgradeDpsButton = document.getElementById('upgrade-dps'); 
 const automaticDps = document.getElementById('automatic-dps');
 let randomNum = 1;
 
@@ -139,6 +139,7 @@ document.getElementById("crearCuenta").addEventListener('click', function() {
 // Función para atacar al enemigo
 function attackEnemy() {
     enemyHealth -= dps;
+    localStorage.setItem("max-health",enemyHealth);
     if (enemyHealth <= 0) {
         let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel
         gold += goldEarned;
@@ -148,8 +149,7 @@ function attackEnemy() {
         console.log("Enemigo: " + randomNum);
         nivel++; // Subimos de nivel
         localStorage.setItem("nivel", nivel);
-        enemyMaxHealth = Math.round(10 * Math.pow(1.2, nivel)); // Salud del enemigo aumenta
-        localStorage.setItem("max-health", enemyMaxHealth);
+        enemyMaxHealth = Math.round(10 * Math.pow(1.2, nivel)); // Salud del enemigo escala exponencialmente, aumenta ma o meno de un 20% por lvl
         enemyHealth = enemyMaxHealth; // Restablecemos la salud
         updateGame();
     }
@@ -174,8 +174,7 @@ function updateGame() {
     automaticDps.disabled = gold < automaticCost;
     dpsElement.textContent = dps;
     upgradeCostElement.textContent = upgradeCost;
-
-    if (automaticDps.classList.contains('comprado')) {
+    if(automaticDps.classList.contains('comprado')){
         automaticDps.disabled = true;
     }
 }
@@ -206,6 +205,7 @@ function upgradeDps() {
 function automaticDamage() {
     if (enemyHealth > 0) {
         enemyHealth -= dps;
+        localStorage.setItem("max-health",enemyHealth);
         if (enemyHealth <= 0) {
             let goldEarned = Math.round(10 * Math.pow(1.15, nivel)); // Oro ganado por nivel
             gold += goldEarned;
@@ -230,19 +230,24 @@ function generateRandomNum() {
 
 // Restablecer estadísticas del juego
 function resetStats() {
-    dps = 1;
-    gold = 0;
-    nivel = 1;
-    enemyHealth = 10;
-    enemyMaxHealth = 10;
-    upgradeCost = 10;
-    localStorage.setItem("nivel", nivel);
-    localStorage.setItem("dps", dps);
-    localStorage.setItem("upgradeCost", upgradeCost);
-    localStorage.setItem("max-health", enemyMaxHealth);
-    localStorage.setItem("gold", gold);
-    automaticDps = dps;
-    updateGame();
+     
+ dps = 1; 
+ gold = 0;
+ nivel = 1;
+ enemyHealth = 10;
+ enemyMaxHealth = 10; 
+ upgradeCost = 10;
+ localStorage.setItem("nivel", nivel);
+ localStorage.setItem("dps",dps);
+ localStorage.setItem("upgradeCost", upgradeCost);
+ localStorage.setItem("max-health",enemyMaxHealth);
+ localStorage.setItem("gold", gold);
+ localStorage.setItem('automatic-dps', 0);
+ clearInterval(intervalo);
+ automaticDps.classList.remove('comprado');
+ automaticDps.innerText ='DPS Automático (Coste: 50)';
+ updateGame();
+ updateEnemy();
 }
 
 // --------------------------- EVENT LISTENERS ---------------------------
@@ -265,24 +270,25 @@ upgradeDpsButton.addEventListener('click', upgradeDps);
 
 // Activar daño automático si el jugador compra la mejora
 automaticDps.addEventListener('click', (ev) => {
-    automaticDps.classList.add('comprado');
-    automaticDps.innerText = 'COMPRADO';
-    setInterval(automaticDamage, 50);
-    gold -= automaticCost;
-    updateGame();
+    if (!automaticDps.classList.contains('comprado')) { // Solo activar si no ha sido comprado antes
+        automaticDps.classList.add('comprado');
+        automaticDps.innerText = 'COMPRADO';
+        automaticDps.disabled = true;
+        intervalo = setInterval(automaticDamage, 1000); // Inicia el daño automático
+        gold -= automaticCost;
+        updateGame();
+        localStorage.setItem('automatic-dps', 1); // Guarda el estado de compra
+    }
 });
-
-
 
 // --------------------------- BUCLE DEL JUEGO ---------------------------
 // Iniciar el ciclo del juego
 function gameLoop() {
-    if(ejecutando)
+    if (ejecutando)
     {
         updateEnemy();
         updateGame();
     }
-   
 }
 
 

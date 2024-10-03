@@ -1,129 +1,118 @@
-*
-{
+* {
   user-select: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+ 
 }
 
-
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    height: 100vh; /* La altura de la ventana */
-    margin: 0; /* Elimina el margen predeterminado */
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; 
-  }
+  font-family: Arial, sans-serif;
+  text-align: center;
+  height: 100vh; /* Altura de la ventana */
+  margin: 0; /* Elimina el margen predeterminado */
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  background-color: rgb(30, 30, 30); /* Fondo oscuro para mejorar la visibilidad */
+}
 
-  #menuIniciosesion {
-    color: white;
-    width: 500px; /* Corrige el ancho */
-    height: 500px;
-    background-color: rgb(0, 0, 0);
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    visibility: visible;
-    display: flex;
-    align-items: center;
-    
-  }
-  
+#menuIniciosesion {
+  color: white;
+  width: 80vw; /* Ancho responsivo */
+  max-width: 500px; /* Ancho máximo */
+  height: auto; /* Alto automático para contenido variable */
+  background-color: rgb(0, 0, 0);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en una columna */
+  align-items: center; /* Centrar elementos dentro del menú */
+}
 
-  form {
-    display: flex;
-    flex-direction: column; /* Coloca los elementos en una columna */
-    gap: 25px;
+form {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en una columna */
+  gap: 25px;
+}
 
-  }
-  
-  a
-  {
-    color: white;
-  }
-  
-  #game {
-    color: white;
-    width: 100vw;
-    height: 100vh;
-    margin: auto;
-    background-color: rgb(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    visibility: hidden;
-    position: absolute;
-    
-  }
-  
-  #enemy {
-    margin-bottom: 20px;
- 
-  }
-  
-  #attack-button, #upgrade-dps {
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background-color: gray;
-    cursor:auto;
-  }
+a {
+  color: white;
+}
 
-  #containerShop {
-    display: flex;
-    justify-content: center;
-  }
-  
-  #shop {
-    flex: 1;
-  }
+#game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100vw;
+  height: 100vh; /* Altura de la ventana */
+  margin: 0; /* Sin margen para ocupar todo el espacio */
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  visibility: hidden; /* Oculto por defecto */
+  position: absolute; /* Para superposición si es necesario */
+}
 
-  #shop p {
-    margin: 0 auto;
-    text-align: center;
-  }
+#enemy {
+  margin-bottom: 20px;
+}
 
-  #automatic {
-    flex: 1;
-  }
+#attack-button,
+#upgrade-dps,
+#automatic-dps {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
 
-  #automatic-dps{
-    padding: 3px 20px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-  #enemy-image
-  {
-    height: 20%;
-    width: 20%;
-  }
+button:disabled {
+  background-color: gray;
+  cursor: auto;
+}
 
+#containerShop {
+  display: flex;
+  justify-content: center;
+}
 
-  button:enabled
-  {
-    background: none;
-    color: white;
-    border: 2px solid white;
-  }
-  
-  button:hover:enabled
-  {
-    cursor: pointer;
-    border-color: yellow;
-    color: yellow;
-  }
-  button:hover:enabled:active
-  {
-    cursor: pointer;
-    border-color: yellow;
-    color: yellow;
-    transform: translateY(2px);
-  }
+#shop {
+  flex: 1;
+}
 
-  
+#shop p {
+  margin: 0 auto;
+  text-align: center;
+}
 
-  
+#automatic {
+  flex: 1;
+}
+
+#enemy-image {
+  max-height: 300px; /* Altura máxima para la imagen */
+  width: auto; /* Mantener relación de aspecto */
+  max-width: 100%; /* Asegúrate de que no sobrepase el contenedor */
+}
+
+button:enabled {
+  background: none;
+  color: white;
+  border: 2px solid white;
+}
+
+button:hover:enabled {
+  cursor: pointer;
+  border-color: yellow;
+  color: yellow;
+}
+
+button:hover:enabled:active {
+  cursor: pointer;
+  border-color: yellow;
+  color: yellow;
+  transform: translateY(2px);
+}
+
